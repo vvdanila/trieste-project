@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<p><b>Dashboard</b></p>
+
+<form action="#" method="get">
+  <div>
+    <label for="count">How many top URLs do you want to see?</label>
+    <input name="count" id="count" value="{{ count|default_if_none:"" }}">
+  </div>
+  <div>
+    <label for="start_date">Start date:</label>
+    <input type="date" min="2017-01-01" name="start_date" id="start_date" value="{{ start_date }}">
+  </div>
+    <label for="end_date">End date:</label>
+    <input type="date" min="2017-01-01" name="end_date" id="end_date" value="{{ end_date }}">
+  </div>
+  <legend>Select keywords:</legend>
+  <div>
+    <input type="checkbox" name="keywords" id="fwf" value="fwf" {{ fwf }}>
+    <label for="fwf">fwf</label>
+  </div>
+  <div>
+    <input type="checkbox" name="keywords" id="per" value="per" {{ per }}>
+    <label for="secondkw">per</label>
+  </div>
+  <div>
+    <input type="checkbox" name="keywords" id="chf" value="chf" {{ chf }}>
+    <label for="secondkw">chf</label>
+  </div>
+  <div>
+    <input type="checkbox" name="keywords" id="cur" value="cur" {{ cur }}>
+    <label for="secondkw">cur</label>
+  </div>
+  <div>
+    <button>Get list</button>
+  </div>
+</form>
+
+<table>
+    <tr>
+        <th>No.</th>
+        <th>Short URL</th>
+        <th>Count</th>
+    </tr>
+    {% for item in data %}
+        <tr>
+            <td>{{ forloop.counter }}.</td>
+            <td>{{ item.short_url }}</td>
+            <td>{{ item.count }}</td>
+        </tr>
+    {% endfor %}
+</table>
